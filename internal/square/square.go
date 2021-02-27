@@ -3,26 +3,21 @@ package square
 import (
 	"fmt"
 
-	"github.com/gofiber/fiber"
-	"github.com/jinzhu/gorm"
+	"github.com/floppyzedolfin/square/pkg"
+	"github.com/gofiber/fiber/v2"
 )
 
-func Square(c *fiber.Ctx) {
-	req := new(SquareRequest)
+// Square parses the request, performs the computation, and returns the result
+func Square(c *fiber.Ctx) error {
+	req := new(pkg.SquareRequest)
 	if err := c.BodyParser(req); err != nil {
-		c.Status(503).Send(err)
-		return
+		return c.Status(fiber.StatusBadRequest).SendString(fmt.Sprintf("unable to parse body as request: %s", err.Error()))
 	}
-	fmt.Printf("%v\n",req)
-	resp := SquareResponse{Value: req.Value*req.Value}
-	c.JSON(resp)
-}
 
-type SquareRequest struct {
-	gorm.Model
-	Value int `json:"value"`
-}
+	res, err := squareImpl(*c, *req)
+	if err != nil{
+		return c.Status(err.Code).SendString(err.Message)
+	}
 
-type SquareResponse struct {
-	Value int `json:"value"`
+	return c.JSON(res)
 }

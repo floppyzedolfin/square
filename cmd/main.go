@@ -7,5 +7,5 @@ import (
 func main() {
 	s := internal.NewServer()
 
-	s.Listen(3000)
+	s.Listen(":3000")
 }

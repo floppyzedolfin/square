@@ -5,6 +5,7 @@ import (
 )
 
 func main() {
+	// Create the server that will have all the necessary endpoints
 	s := internal.NewServer()
 
 	s.Listen(":3000")

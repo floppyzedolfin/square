@@ -1,17 +1,18 @@
 package square
 
 import (
-	"github.com/floppyzedolfin/square/pkg"
+	squaredef "github.com/floppyzedolfin/square/pkg/square"
 	"github.com/gofiber/fiber/v2"
 )
 
-func squareImpl(_ fiber.Ctx, req pkg.SquareRequest) (pkg.SquareResponse, *fiber.Error) {
+// squareImpl squares the value contained in the request
+func squareImpl(_ fiber.Ctx, req squaredef.Request) (squaredef.Response, *fiber.Error) {
 	if req.Value == 0 {
-		return pkg.SquareResponse{}, fiber.NewError(fiber.StatusNotAcceptable, "naught, naught, naught")
+		return squaredef.Response{}, fiber.NewError(fiber.StatusNotAcceptable, "naught, naught, naught")
 	}
 
 	// implement logic here
 	result := req.Value * req.Value
 
-	return pkg.SquareResponse{Value: result}, nil
+	return squaredef.Response{Value: result}, nil
 }

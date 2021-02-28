@@ -1,4 +1,4 @@
-FROM alpine
+FROM scratch
 
 COPY square.out /app/square.out
 

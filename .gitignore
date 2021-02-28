@@ -1,4 +1,4 @@
-# Outputs, be the from test or from localbuild
+# Outputs, be they from test or from "make compile"
 *.out
 
 # Dependency directories
@@ -6,3 +6,4 @@ vendor/
 
 # IDE files
 .idea/*
+

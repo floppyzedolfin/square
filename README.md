@@ -42,7 +42,6 @@ docker image. Read below for potential differences.
 ### Cleanup
 
 - `make clean` removes local build and test caches, and removes the docker image
-- `make stop` ends the docker process (if you've forgotten wherein terminal tab it's running)
 
 ## Playing with it
 

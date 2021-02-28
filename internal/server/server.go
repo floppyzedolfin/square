@@ -16,7 +16,7 @@ func NewServer() *Server {
 	return &s
 }
 
-// Listen starts the server on the associated port
+// Listen starts the server on the associated port (which is a string starting with ':')
 func (s *Server) Listen(port string) {
 	s.app.Listen(port)
 }

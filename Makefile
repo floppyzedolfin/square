@@ -14,14 +14,12 @@ compile:
 localbuild: compile
 	docker build -t ${NAME}:${VERSION} build
 
-run: stop
+run:
+	docker stop ${NAME} || true
 	docker run --rm -p 8530:3000 --name ${NAME} ${NAME}:${VERSION}
 
 stagedbuild:
 	docker build -t ${NAME}:${VERSION} .
-
-stop:
-	docker stop ${NAME} || true
 
 test:
 	go test ./...

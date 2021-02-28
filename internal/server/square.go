@@ -14,7 +14,7 @@ func (s* Server) registerSquare() {
 	s.app.Post("/square", squareWrapper)
 }
 
-// squareWrapper parses the request, performs the computation, and returns the result
+// squareWrapper parses the request, calls the intelligent computation function, and returns the result
 func squareWrapper(c *fiber.Ctx) error {
 	req := new(squaredef.Request)
 	if err := c.BodyParser(req); err != nil {
@@ -22,6 +22,7 @@ func squareWrapper(c *fiber.Ctx) error {
 	}
 	logger.Log(logger.Info, "received request for endpoint square: %s", req)
 
+	// Here lies the endpoint's smartness
 	res, err := square.Square(*c, *req)
 	if err != nil {
 		return c.Status(err.Code).JSON(fiber.Map{"error": err.Message})

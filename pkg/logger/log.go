@@ -30,6 +30,7 @@ var (
 // Log prints a message on the standard output. The message has a json format and contains information about the caller
 func Log(lvl Level, format string, a ...interface{}) {
 	if lvl >= defaultLevel {
+		// Skipping 2 layers in order to get to the caller of this func.
 		msg := buildLogMessage(lvl, fmt.Sprintf(format, a...), clock, 2)
 		marshalledLog, _ := json.Marshal(msg)
 		fmt.Fprintf(output, "%v\n", string(marshalledLog))

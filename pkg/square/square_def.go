@@ -2,14 +2,15 @@ package square
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/jinzhu/gorm"
 )
 
 // Request holds the contents of the request, along with its json fields' names
 type Request struct {
-	gorm.Model // needed to parse this body
-	Value *int `json:"value` // making it a pointer makes it mandatory, if we implement the checks properly
+	gorm.Model      // needed to parse this body
+	Value      *int `json:"value` // making it a pointer makes it mandatory, if we implement the checks properly
 }
 
 func (r *Request) Validate() error {
@@ -21,7 +22,14 @@ func (r *Request) Validate() error {
 
 // String implements the stringer interface, and hides the gorm thingy
 func (r *Request) String() string {
-	return fmt.Sprintf("Value: %d", r.Value)
+	sb := strings.Builder{}
+	sb.WriteString("Value: ")
+	if r.Value == nil {
+		sb.WriteString("nil")
+	} else {
+		sb.WriteString(fmt.Sprintf("%d", *r.Value))
+	}
+	return sb.String()
 }
 
 // Response holds the contents of the response, along with its json fields's names

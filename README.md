@@ -58,15 +58,15 @@ An error scenario has been built-in, for testing an example purposes, if the inp
 
 ## Limitations
 
-- So far, I haven't found a json parser that will cause invalid fields to raise an error. In our example here, the following request is valid:
+- So far, I haven't found a json parser that will cause invalid fields to raise an error. In our example here, the
+  following request is valid:
+
 ```json
 {
   "value": -4,
   "foo": "bar"
 }
 ```
-
-
 
 ## TODOs
 

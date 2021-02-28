@@ -21,14 +21,14 @@ func TestSquare(t *testing.T) {
 			squaredValue: 4,
 		},
 		"0 squared - error case": {
-			inputValue:   intPtr(0),
-			returnCode:   fiber.StatusNotAcceptable,
-			errMsg: "naught, naught, naught",
+			inputValue: intPtr(0),
+			returnCode: fiber.StatusNotAcceptable,
+			errMsg:     "naught, naught, naught",
 		},
 		"invalid request - error case": {
-			inputValue:   nil,
-			returnCode:   fiber.StatusBadRequest,
-			errMsg: "unset request",
+			inputValue: nil,
+			returnCode: fiber.StatusBadRequest,
+			errMsg:     "unset request",
 		},
 	}
 

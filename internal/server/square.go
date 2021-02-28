@@ -10,7 +10,7 @@ import (
 )
 
 // registerSquare exposes the Square endpoint on the server
-func (s* Server) registerSquare() {
+func (s *Server) registerSquare() {
 	s.app.Post("/square", squareWrapper)
 }
 

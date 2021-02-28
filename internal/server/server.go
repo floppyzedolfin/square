@@ -23,6 +23,6 @@ func (s *Server) Listen(port string) {
 
 // registerEndpoints adds all necessary endpoints to the server
 // add each endpoint here
-func (s* Server) registerEndpoints() {
+func (s *Server) registerEndpoints() {
 	s.registerSquare()
 }

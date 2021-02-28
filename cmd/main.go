@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/floppyzedolfin/square/internal"
+	"github.com/floppyzedolfin/square/internal/server"
 )
 
 func main() {
 	// Create the server that will have all the necessary endpoints
-	s := internal.NewServer()
+	s := server.NewServer()
 
 	s.Listen(":3000")
 }

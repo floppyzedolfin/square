@@ -1,25 +1,24 @@
 package square
 
 import (
-	"fmt"
-
 	"github.com/floppyzedolfin/square/pkg/logger"
 	squaredef "github.com/floppyzedolfin/square/pkg/square"
 	"github.com/gofiber/fiber/v2"
 )
 
-// Square parses the request, performs the computation, and returns the result
-func Square(c *fiber.Ctx) error {
-	req := new(squaredef.Request)
-	if err := c.BodyParser(req); err != nil {
-		return c.Status(fiber.StatusBadRequest).SendString(fmt.Sprintf("unable to parse body as request: %s", err.Error()))
+// Square squares the value contained in the request
+func Square(_ fiber.Ctx, req squaredef.Request) (squaredef.Response, *fiber.Error) {
+	if err := req.Validate(); err != nil {
+		return squaredef.Response{}, fiber.NewError(fiber.StatusBadRequest, "unset request")
 	}
-	logger.Log(logger.Info, "received request for endpoint square: %s", req)
-
-	res, err := squareImpl(*c, *req)
-	if err != nil{
-		return c.Status(err.Code).SendString(err.Message)
+	v := *req.Value
+	if v == 0 {
+		logger.Log(logger.Warning, "You've entered Castle Anthrax!")
+		return squaredef.Response{}, fiber.NewError(fiber.StatusNotAcceptable, "naught, naught, naught")
 	}
 
-	return c.JSON(res)
+	// implement logic here
+	result := v * v
+
+	return squaredef.Response{Value: result}, nil
 }

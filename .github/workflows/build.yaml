@@ -1,0 +1,17 @@
+name: build
+
+on: [push]
+
+jobs:
+  stagedbuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: stagedbuild
+        run: make stagedbuild
+  localbuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: localbuild
+        run: make localbuild

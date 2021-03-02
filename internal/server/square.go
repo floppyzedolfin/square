@@ -20,6 +20,9 @@ func squareWrapper(c *fiber.Ctx) error {
 	if err := c.BodyParser(req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": fmt.Sprintf("unable to parse body as request: %s", err.Error())})
 	}
+	if err := req.Validate(); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error":"unset request"})
+	}
 	logger.Log(logger.Info, "received request for endpoint square: %s", req)
 
 	// Here lies the endpoint's smartness

@@ -37,6 +37,14 @@ func Test_Server(t *testing.T) {
 			returnCode:  fiber.StatusBadRequest,
 			errMsg:      "{\"error\":\"unable to parse body as request", // and stuff that are not part of this code
 		},
+		"request is not valid": {
+			verb:        http.MethodPost,
+			path:        "/square",
+			body:        "{}",
+			contentType: "application/json",
+			returnCode:  fiber.StatusBadRequest,
+			errMsg:      "{\"error\":\"unset request",
+		},
 		"wrong type for the field": {
 			verb:        http.MethodPost,
 			path:        "/square",

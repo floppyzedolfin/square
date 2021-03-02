@@ -1,5 +1,5 @@
 # Section 1 - build the binary
-FROM golang:1.16 as builder
+FROM golang:1.15 as builder
 
 WORKDIR /go/src/github.com/floppyzedolfin/square
 COPY . /go/src/github.com/floppyzedolfin/square

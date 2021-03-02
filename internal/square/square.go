@@ -8,7 +8,7 @@ import (
 
 // Square squares the value contained in the request
 func Square(_ fiber.Ctx, req squaredef.Request) (squaredef.Response, *fiber.Error) {
-	if err := req.Validate(); err != nil {
+	if req.Value == nil {
 		return squaredef.Response{}, fiber.NewError(fiber.StatusBadRequest, "unset request")
 	}
 	v := *req.Value
